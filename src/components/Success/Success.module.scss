@@ -1,0 +1,56 @@
+@keyframes scale-out {
+    0%{
+        opacity: 1;
+        transform: scale(0);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+@keyframes bounce-small {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.5);
+    }
+}
+
+.success {
+  &__section {
+    max-width: 23.4375rem;
+    padding: 4rem;
+    @media only screen and (max-width: 950px) {
+        padding: 1.8rem;
+      padding-top: 9.375rem;
+    }
+  }
+  &__icon{
+      animation: bounce-small .3s 1s 2;
+      @media only screen and (max-width: 460px) {
+    margin-bottom: 1rem;
+      }
+}
+&__text{
+    @media only screen and (max-width: 950px) {
+    margin-bottom: 16.875rem;
+    }
+}
+}
+.animation{
+    &__group{
+        position: relative;
+    }
+    &__pop{
+        animation: scale-out .3s 1s 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4rem;
+        height: 4rem;
+        background-color: var(--color-primary);
+        border-radius: 100%;
+        opacity: 0;
+    }
+}

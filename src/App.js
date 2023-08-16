@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.scss";
+import Footer from "./Layout/Footer/Footer";
+import Card from "./components/Card/Card";
+import Newsletter from "./components/Newsletter/Newsletter";
+import Success from "./components/Success/Success";
+import useMediaQuery from "./hooks/useMediaQuery";
 
 function App() {
+  const [isNotSubmitted, setIsNotSubmitted] = useState(true);
+  const [email, setEmail] = useState("");
+  const media = useMediaQuery("only screen and (max-width:460px");
+  const toggleSubmithandler = (value = "") => {
+    setIsNotSubmitted((prevState) => !prevState);
+    setEmail(value);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isNotSubmitted && (
+        <Card margin={!media && "7rem auto"} className="fade-in">
+          <Newsletter toggleSubmit={toggleSubmithandler} />
+        </Card>
+      )}
+      {!isNotSubmitted && (
+        <Card margin={!media && "10rem auto"} className="bounce">
+          <Success toggleSubmit={toggleSubmithandler} email={email} />
+        </Card>
+      )}
+      {!media && <Footer />}
+    </>
   );
 }
 
